@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Env
+.env
+.env.*
+!.env.example
+
+# 사업 기획 자료 (공개 레포에서 제외)
+*.pdf
+_pdf_images/
+/logo.png
+/app_logo.png
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log

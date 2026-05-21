@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #fff1f3;
+  --color-brand-100: #ffe0e6;
+  --color-brand-200: #ffc2cd;
+  --color-brand-300: #ff97aa;
+  --color-brand-400: #ff6b88;
+  --color-brand-500: #ff4d6d;
+  --color-brand-600: #ed3a5c;
+  --color-brand-700: #c92a48;
+
+  --color-ai-400: #8b7cf0;
+  --color-ai-500: #6c5ce7;
+  --color-ai-600: #5b4bd6;
+
+  --color-ink-500: #4b5563;
+  --color-ink-700: #1f2937;
+  --color-ink-900: #0f172a;
+
+  --font-sans: "Pretendard", system-ui, -apple-system, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: #eef0f4;
+  color: var(--color-ink-900);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 발표용 모바일 프레임: 데스크톱에서도 폰 화면처럼 중앙에 보이게 */
+.phone-shell {
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  background: #ffffff;
+  position: relative;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 스크롤바 숨김(시연 깔끔하게) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes float-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-float-up {
+  animation: float-up 0.4s ease both;
+}
