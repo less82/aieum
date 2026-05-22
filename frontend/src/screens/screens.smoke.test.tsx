@@ -22,7 +22,7 @@ afterEach(() => {
 describe("화면 렌더 스모크 (런타임 에러 없음)", () => {
   it("홈: 타이틀과 시작 버튼 렌더", () => {
     renderAt(<Home />);
-    expect(screen.getByText("이음")).toBeTruthy();
+    expect(screen.getByAltText("이음")).toBeTruthy();
     expect(screen.getByText(/데모 시작하기/)).toBeTruthy();
   });
 

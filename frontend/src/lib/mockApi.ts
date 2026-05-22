@@ -39,9 +39,15 @@ export async function generateIcebreakers(myInterests: string[], other: Candidat
   return think(list, 1200);
 }
 
-/** AI 데이트 후기 요약 (태그 → 한 줄 요약) */
-export async function summarizeReview(tags: string[], rating: number): Promise<string> {
+/** 데이트 신청 전송 → 상대 수락 (시드 자동 수락 시뮬) */
+export async function sendDateRequest(): Promise<{ accepted: true }> {
+  return think({ accepted: true }, 1400);
+}
+
+/** AI 데이트 후기 요약 (태그 + 직접 입력 후기 → 한 줄 요약) */
+export async function summarizeReview(tags: string[], rating: number, note = ""): Promise<string> {
   const mood = rating >= 4 ? "만족스러운" : rating >= 3 ? "무난한" : "아쉬움이 남은";
   const tagText = tags.length ? tags.map((t) => t.replace("#", "")).join(", ") : "특별한";
-  return think(`${mood} 데이트였어요. ‘${tagText}’ 키워드가 돋보였고, 다음 코스 추천에 반영됩니다.`, 1100);
+  const noteText = note.trim() ? ` 직접 남긴 한마디: “${note.trim()}”.` : "";
+  return think(`${mood} 데이트였어요. ‘${tagText}’ 키워드가 돋보였고,${noteText} 다음 코스 추천에 반영됩니다.`, 1100);
 }

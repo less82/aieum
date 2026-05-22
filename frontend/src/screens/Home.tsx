@@ -13,34 +13,37 @@ export function Home() {
   };
 
   return (
-    <div className="phone-shell">
-      <div className="relative flex flex-1 flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-brand-500 via-brand-400 to-ai-500 px-8 text-center text-white">
-        {/* 배경 장식 */}
-        <div className="pointer-events-none absolute -left-16 -top-10 h-56 w-56 rounded-full bg-white/10 blur-2xl" />
-        <div className="pointer-events-none absolute -bottom-16 -right-10 h-64 w-64 rounded-full bg-white/10 blur-2xl" />
+    <div className="phone-shell items-center justify-center px-9 text-center">
+      <span className="bokeh" style={{ width: 18, height: 18, left: "16%", top: "18%" }} />
+      <span className="bokeh" style={{ width: 12, height: 12, right: "20%", top: "26%", animationDelay: "1.5s" }} />
+      <span className="bokeh" style={{ width: 14, height: 14, left: "26%", bottom: "22%", animationDelay: "3s" }} />
+      <span className="bokeh" style={{ width: 9, height: 9, right: "28%", bottom: "30%", animationDelay: "2.2s" }} />
 
-        <img src="/app_logo.png" alt="이음" className="mb-7 h-28 w-28 rounded-3xl shadow-2xl" />
-        <h1 className="text-4xl font-extrabold tracking-tight">이음</h1>
-        <p className="mt-3 text-lg font-medium text-white/90">AI가 찾아주는 완벽한 인연</p>
-        <p className="mt-2 text-sm text-white/70">
-          외모·조건이 아닌 <b className="text-white">성격 궁합</b>으로 만나는
-          <br />
-          진지한 데이트 매칭
+      <div className="stagger relative z-10 flex flex-col items-center">
+        <img src="/app_logo.png" alt="이음 로고" className="mb-7 h-24 w-24 rounded-[26%] shadow-[0_18px_44px_-12px_rgba(236,90,131,0.5)] ring-1 ring-white/70" />
+
+        <p className="text-[11px] font-semibold uppercase tracking-[0.5em] text-lav-500">AI Matchmaking</p>
+        <img src="/font.png" alt="이음" className="mt-3 w-48" />
+        <p className="display mt-2 text-2xl font-medium text-blush-500">AI가 찾아주는 완벽한 인연</p>
+
+        <div className="my-6 h-px w-14 bg-gradient-to-r from-transparent via-blush-300 to-transparent" />
+
+        <p className="max-w-[17rem] text-sm leading-relaxed text-ink-soft">
+          외모·조건이 아닌 <b className="font-semibold text-ink">성격 궁합</b>으로 만나는
+          진지한 데이트. 오늘, 단 한 사람을 소개합니다.
         </p>
 
         <div className="mt-10 w-full max-w-xs space-y-3">
-          <Button full onClick={startDemo} className="!bg-white !text-brand-600 !shadow-xl">
-            ✨ 데모 시작하기
-          </Button>
+          <Button full onClick={startDemo}>✦ 데모 시작하기</Button>
           {hasProfile && (
-            <Button full variant="ghost" onClick={() => navigate("/matching")} className="!text-white hover:!bg-white/15">
+            <Button full variant="ghost" onClick={() => navigate("/matching")} className="!text-blush-600">
               이어서 매칭 보기 →
             </Button>
           )}
         </div>
-
-        <p className="absolute bottom-6 text-xs text-white/50">발표용 데모 · 데이터는 시연용 시드입니다</p>
       </div>
+
+      <p className="absolute bottom-6 z-10 text-[11px] tracking-wide text-ink-faint">발표용 데모 · 데이터는 시연용 시드입니다</p>
     </div>
   );
 }

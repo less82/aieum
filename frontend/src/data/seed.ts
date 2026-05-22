@@ -76,6 +76,9 @@ export const SURVEY_QUESTIONS: SurveyQuestion[] = [
   },
 ];
 
+// 지도상 내 위치 (스타일라이즈드 좌표계 0~100 x, 0~80 y)
+export const ME_LOC = { x: 16, y: 68 };
+
 // ── 시드 상대 풀 (스펙 §9) ──
 export const SEED_USERS: SeedUser[] = [
   {
@@ -83,67 +86,105 @@ export const SEED_USERS: SeedUser[] = [
     bio: "주말엔 전시 보러 다녀요. 진득한 대화를 좋아해요.",
     interests: ["전시", "카페", "와인"],
     trait: { EI: 0.7, JP: 0.8, active: 0.6, values: 0.9 },
+    distanceKm: 1.4, loc: { x: 72, y: 26 },
   },
   {
     id: "u-hyunwoo", nickname: "현우", age: 31, region: "성수", photo: "🍝",
     bio: "맛집 탐방이 취미입니다. 같이 먹으러 다녀요!",
     interests: ["맛집", "러닝", "영화"],
     trait: { EI: 0.8, JP: 0.75, active: 0.7, values: 0.85 },
+    distanceKm: 2.1, loc: { x: 66, y: 32 },
   },
   {
     id: "u-seoyeon", nickname: "서연", age: 27, region: "홍대", photo: "📚",
     bio: "카페에서 책 읽는 시간이 제일 좋아요.",
     interests: ["독서", "카페", "음악"],
     trait: { EI: 0.3, JP: 0.4, active: 0.3, values: 0.6 },
+    distanceKm: 3.8, loc: { x: 78, y: 20 },
   },
   {
     id: "u-dohyun", nickname: "도현", age: 30, region: "홍대", photo: "🧗",
     bio: "러닝과 클라이밍! 활동적인 데이트 좋아해요.",
     interests: ["클라이밍", "러닝", "여행"],
     trait: { EI: 0.6, JP: 0.3, active: 0.9, values: 0.5 },
+    distanceKm: 4.2, loc: { x: 60, y: 18 },
   },
   {
     id: "u-minji", nickname: "민지", age: 28, region: "성수", photo: "🎬",
     bio: "조용하고 아늑한 분위기를 좋아합니다.",
     interests: ["영화", "베이킹", "미술관"],
     trait: { EI: 0.2, JP: 0.85, active: 0.2, values: 0.4 },
+    distanceKm: 1.8, loc: { x: 74, y: 40 },
   },
   {
     id: "u-junho", nickname: "준호", age: 32, region: "성수", photo: "📷",
     bio: "즉흥 여행과 사진 찍기를 사랑하는 사람.",
     interests: ["여행", "사진", "페스티벌"],
     trait: { EI: 0.9, JP: 0.2, active: 0.8, values: 0.7 },
+    distanceKm: 2.6, loc: { x: 64, y: 24 },
   },
 ];
 
-// ── 큐레이션 데이트 코스 (성수 1지역 5코스) ──
+// ── 큐레이션 데이트 코스 (성수 1지역 5코스) ── estCost는 stops 가격 합계와 동일하게 유지
 export const COURSES: Course[] = [
   {
     id: "c-cafe-gallery", title: "감성 카페 + 갤러리", emoji: "🎨", region: "성수",
-    estTime: "3시간", estCost: "4만원", vibe: "calm",
-    steps: ["대림창고 카페", "성수 연방 갤러리", "한강 산책"],
+    estTime: "3시간", estCost: "15,000원", vibe: "calm",
+    stops: [
+      { name: "대림창고 카페", menu: "아이스 아메리카노", price: 5000, emoji: "☕", desc: "성수동 대표 복합문화 카페", x: 30, y: 56 },
+      { name: "성수 연방 갤러리", menu: "전시 관람", price: 10000, emoji: "🖼️", desc: "현대미술 기획전시 공간", x: 46, y: 42 },
+      { name: "한강 산책", menu: "산책", price: 0, emoji: "🌊", desc: "탁 트인 한강뷰 산책로", x: 60, y: 52 },
+    ],
   },
   {
     id: "c-food-rooftop", title: "맛집 + 루프탑 바", emoji: "🍷", region: "성수",
-    estTime: "4시간", estCost: "7만원", vibe: "calm",
-    steps: ["성수 수제버거", "디저트 카페", "루프탑 칵테일 바"],
+    estTime: "4시간", estCost: "45,000원", vibe: "calm",
+    stops: [
+      { name: "성수 수제버거", menu: "수제버거 세트", price: 18000, emoji: "🍔", desc: "두툼한 패티 수제버거 맛집", x: 34, y: 52 },
+      { name: "디저트 카페", menu: "티라미수 + 커피", price: 12000, emoji: "🍰", desc: "시그니처 티라미수", x: 50, y: 40 },
+      { name: "루프탑 칵테일 바", menu: "시그니처 칵테일", price: 15000, emoji: "🍸", desc: "야경 좋은 루프탑 바", x: 64, y: 30 },
+    ],
   },
   {
     id: "c-active", title: "액티브 데이트", emoji: "🧗", region: "성수",
-    estTime: "3시간", estCost: "5만원", vibe: "active",
-    steps: ["실내 클라이밍", "단백질 브런치", "성수 편집샵 구경"],
+    estTime: "3시간", estCost: "36,000원", vibe: "active",
+    stops: [
+      { name: "실내 클라이밍", menu: "2시간 이용권", price: 22000, emoji: "🧗", desc: "초보 가능 실내 암벽장", img: "/climbing.jpg", x: 28, y: 48 },
+      { name: "단백질 브런치", menu: "브런치 플레이트", price: 14000, emoji: "🥗", desc: "건강한 브런치 플레이트", img: "/branch.jpg", x: 44, y: 54 },
+      { name: "성수 편집샵", menu: "구경", price: 0, emoji: "🛍️", desc: "트렌디한 편집샵 거리", img: "/shop.jpg", x: 58, y: 44 },
+    ],
   },
   {
     id: "c-class-dinner", title: "공방 클래스 + 디너", emoji: "🧵", region: "성수",
-    estTime: "4시간", estCost: "8만원", vibe: "calm",
-    steps: ["가죽 공방 원데이클래스", "이탈리안 디너"],
+    estTime: "4시간", estCost: "67,000원", vibe: "calm",
+    stops: [
+      { name: "가죽 공방", menu: "카드지갑 원데이클래스", price: 39000, emoji: "🧵", desc: "나만의 가죽 소품 만들기", x: 40, y: 38 },
+      { name: "이탈리안 디너", menu: "파스타 + 와인", price: 28000, emoji: "🍝", desc: "수제 파스타 & 와인", x: 56, y: 50 },
+    ],
   },
   {
     id: "c-walk", title: "조용한 산책 코스", emoji: "🌳", region: "성수",
-    estTime: "2시간", estCost: "3만원", vibe: "active",
-    steps: ["서울숲 산책", "북카페", "테이크아웃 커피"],
+    estTime: "2시간", estCost: "13,000원", vibe: "active",
+    stops: [
+      { name: "서울숲 산책", menu: "산책", price: 0, emoji: "🌳", desc: "도심 속 숲길 산책", x: 26, y: 44 },
+      { name: "북카페", menu: "핸드드립 커피", price: 8000, emoji: "📖", desc: "조용한 핸드드립 북카페", x: 42, y: 34 },
+      { name: "테이크아웃 커피", menu: "아이스 라떼", price: 5000, emoji: "🥤", desc: "산책 마무리 테이크아웃", x: 54, y: 40 },
+    ],
   },
 ];
+
+// 코스 1인 선결제 합계 (원)
+export function courseTotal(course: Course): number {
+  return course.stops.reduce((sum, s) => sum + (s.price ?? 0), 0);
+}
+
+// 원화 포맷 (예: 15000 → "15,000원")
+export function formatWon(won: number): string {
+  return `${won.toLocaleString("ko-KR")}원`;
+}
+
+// 1인 데이트 예산 드롭다운 (스펙 SCR-MAT-001 확장)
+export const BUDGET_OPTIONS = ["1만원 이하", "2만원", "3만원", "4만원", "5만원", "직접 입력"];
 
 // ── AI 성향 리포트(자기 자신) 키워드/요약 생성 (스크립트형) ──
 export function buildSelfReport(t: TraitVector): { keywords: string[]; summary: string } {

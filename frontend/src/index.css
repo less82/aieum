@@ -1,24 +1,60 @@
 @import "tailwindcss";
 
+/* G마켓 산스 (디스플레이) */
+@font-face {
+  font-family: "GmarketSans";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff") format("woff");
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GmarketSans";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GmarketSans";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff") format("woff");
+  font-weight: 700;
+  font-display: swap;
+}
+
 @theme {
-  --color-brand-50: #fff1f3;
-  --color-brand-100: #ffe0e6;
-  --color-brand-200: #ffc2cd;
-  --color-brand-300: #ff97aa;
-  --color-brand-400: #ff6b88;
-  --color-brand-500: #ff4d6d;
-  --color-brand-600: #ed3a5c;
-  --color-brand-700: #c92a48;
+  /* 텍스트 (소프트 플럼) */
+  --color-ink: #4a3d59;
+  --color-ink-soft: #837593;
+  --color-ink-faint: #ab9fb8;
 
-  --color-ai-400: #8b7cf0;
-  --color-ai-500: #6c5ce7;
-  --color-ai-600: #5b4bd6;
+  /* 블러쉬 핑크 (메인) */
+  --color-blush-50: #fff5f8;
+  --color-blush-100: #ffe4ec;
+  --color-blush-200: #ffc9da;
+  --color-blush-300: #ffa6c1;
+  --color-blush-400: #ff85a8;
+  --color-blush-500: #fb6f96;
+  --color-blush-600: #ec5a83;
+  --color-blush-700: #d2426d;
 
-  --color-ink-500: #4b5563;
-  --color-ink-700: #1f2937;
-  --color-ink-900: #0f172a;
+  /* 라벤더 (AI 액센트) */
+  --color-lav-100: #efe9ff;
+  --color-lav-200: #ddd2fb;
+  --color-lav-300: #c4b3f2;
+  --color-lav-500: #9b80ea;
+  --color-lav-600: #7d5fe0;
+
+  /* 피치 (크레딧) */
+  --color-peach-100: #fff0e2;
+  --color-peach-200: #ffdfc2;
+  --color-peach-300: #ffcfa6;
+  --color-peach-500: #f7a45f;
+  --color-peach-600: #e08641;
+
+  /* 민트 (성공/온라인) */
+  --color-mint-400: #5fcfae;
 
   --font-sans: "Pretendard", system-ui, -apple-system, sans-serif;
+  --font-display: "GmarketSans", "Pretendard", system-ui, sans-serif;
 }
 
 html,
@@ -30,37 +66,98 @@ body,
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background: #eef0f4;
-  color: var(--color-ink-900);
+  color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background: #fbeaf0;
 }
 
-/* 발표용 모바일 프레임: 데스크톱에서도 폰 화면처럼 중앙에 보이게 */
+/* 발표용 모바일 프레임 — 파스텔 그라데이션 메시 */
 .phone-shell {
   width: 100%;
-  max-width: 430px;
+  max-width: 432px;
   margin: 0 auto;
   min-height: 100dvh;
-  background: #ffffff;
   position: relative;
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
+  color: var(--color-ink);
+  background:
+    radial-gradient(620px 420px at 12% -6%, #ffd9e6 0%, transparent 60%),
+    radial-gradient(560px 480px at 110% 6%, #e7defc 0%, transparent 58%),
+    radial-gradient(640px 560px at 50% 116%, #d7f3ec 0%, transparent 60%),
+    radial-gradient(500px 420px at 88% 100%, #ffe7d2 0%, transparent 55%),
+    linear-gradient(170deg, #fff6f9 0%, #fdeef5 55%, #f6eefb 100%);
+  box-shadow: 0 36px 90px -28px rgba(236, 90, 131, 0.3);
+  overflow: hidden;
 }
 
-/* 스크롤바 숨김(시연 깔끔하게) */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+@media (min-width: 480px) {
+  .phone-shell {
+    margin-block: 24px;
+    min-height: calc(100dvh - 48px);
+    border-radius: 34px;
+    box-shadow:
+      0 50px 110px -30px rgba(236, 90, 131, 0.32),
+      0 0 0 1px rgba(255, 255, 255, 0.7);
+  }
 }
 
+/* 소프트 파스텔 글로우 */
+.bokeh {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(8px);
+  background: radial-gradient(circle, rgba(255, 170, 200, 0.6) 0%, rgba(200, 180, 250, 0.25) 60%, transparent 72%);
+  animation: drift 9s ease-in-out infinite alternate;
+}
+@keyframes drift {
+  from { transform: translateY(0) scale(1); opacity: 0.45; }
+  to { transform: translateY(-14px) scale(1.18); opacity: 0.75; }
+}
+
+/* 카드 (소프트 화이트) */
+.card {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 14px 34px -18px rgba(214, 66, 109, 0.35);
+  backdrop-filter: blur(8px);
+}
+.card-peach {
+  background: linear-gradient(135deg, #fff3e8 0%, #ffe8f0 100%);
+  border: 1px solid rgba(247, 164, 95, 0.4);
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── 모션 ── */
 @keyframes float-up {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.animate-float-up {
-  animation: float-up 0.4s ease both;
+.animate-float-up { animation: float-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(18px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.stagger > * { animation: rise-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.14s; }
+.stagger > *:nth-child(3) { animation-delay: 0.23s; }
+.stagger > *:nth-child(4) { animation-delay: 0.32s; }
+.stagger > *:nth-child(5) { animation-delay: 0.41s; }
+.stagger > *:nth-child(6) { animation-delay: 0.5s; }
+
+@keyframes pop-in {
+  0% { opacity: 0; transform: translateY(6px) scale(0.96); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-pop { animation: pop-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+.display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
 }
