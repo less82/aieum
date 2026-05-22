@@ -77,7 +77,7 @@ export function Chat() {
 
       <header className="relative z-10 flex items-center gap-3 border-b border-blush-100 bg-white/60 px-4 py-3 backdrop-blur">
         <button onClick={() => navigate(-1)} className="text-2xl leading-none text-ink-soft hover:text-ink" aria-label="뒤로">‹</button>
-        <Avatar emoji={match.photo} size={40} />
+        <Avatar emoji={match.photo} img={match.img} size={40} />
         <div className="flex-1">
           <div className="font-semibold text-ink">{match.nickname}</div>
           <div className="flex items-center gap-1 text-[11px] text-emerald-500">
@@ -103,7 +103,7 @@ export function Chat() {
         {msgs.map((m, i) =>
           m.from === "them" ? (
             <div key={i} className="flex items-end gap-2 animate-pop">
-              <Avatar emoji={match.photo} size={28} ring={false} />
+              <Avatar emoji={match.photo} img={match.img} size={28} ring={false} />
               <div className="max-w-[75%] rounded-2xl rounded-bl-sm card px-3.5 py-2.5 text-sm text-ink">{m.text}</div>
             </div>
           ) : (
@@ -114,7 +114,7 @@ export function Chat() {
         )}
         {typing && (
           <div className="flex items-end gap-2">
-            <Avatar emoji={match.photo} size={28} ring={false} />
+            <Avatar emoji={match.photo} img={match.img} size={28} ring={false} />
             <div className="rounded-2xl rounded-bl-sm card px-4 py-3">
               <span className="flex gap-1">
                 {[0, 1, 2].map((d) => (

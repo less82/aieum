@@ -15,6 +15,15 @@ export async function rankCandidates(self: TraitVector): Promise<Candidate[]> {
     const { score, reason, topMatch, topDiff } = computeCompatibility(self, u.trait);
     return { ...u, score, reason, topMatch, topDiff };
   }).sort((a, b) => b.score - a.score);
+
+  // 데모: 매칭 상대는 항상 아이유로 고정 노출 (최고 궁합 점수로 보정)
+  const topScore = ranked[0]?.score ?? 0;
+  const idx = ranked.findIndex((c) => c.id === "u-jiyun");
+  if (idx > 0) {
+    const [iu] = ranked.splice(idx, 1);
+    iu.score = Math.max(iu.score, topScore);
+    ranked.unshift(iu);
+  }
   return think(ranked, 1600);
 }
 

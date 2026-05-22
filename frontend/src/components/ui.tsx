@@ -87,8 +87,18 @@ export function Tag({ children, active, onClick }: { children: ReactNode; active
   );
 }
 
-// ── 아바타 ──
-export function Avatar({ emoji, size = 56, ring = true }: { emoji: string; size?: number; ring?: boolean }) {
+// ── 아바타 (img 있으면 사진, 없으면 이모지) ──
+export function Avatar({ emoji, img, size = 56, ring = true }: { emoji: string; img?: string; size?: number; ring?: boolean }) {
+  if (img) {
+    return (
+      <img
+        src={img}
+        alt=""
+        className={`rounded-[30%] object-cover ${ring ? "ring-1 ring-blush-200" : ""}`}
+        style={{ width: size, height: size }}
+      />
+    );
+  }
   return (
     <div
       className={`flex items-center justify-center rounded-[30%] bg-gradient-to-br from-blush-100 to-lav-100 ${ring ? "ring-1 ring-blush-200" : ""}`}

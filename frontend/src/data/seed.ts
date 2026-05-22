@@ -82,7 +82,7 @@ export const ME_LOC = { x: 16, y: 68 };
 // ── 시드 상대 풀 (스펙 §9) ──
 export const SEED_USERS: SeedUser[] = [
   {
-    id: "u-jiyun", nickname: "지윤", age: 29, region: "성수", photo: "🎨",
+    id: "u-jiyun", nickname: "아이유", age: 29, region: "성수", photo: "🎤", img: "/iu.jpg",
     bio: "주말엔 전시 보러 다녀요. 진득한 대화를 좋아해요.",
     interests: ["전시", "카페", "와인"],
     trait: { EI: 0.7, JP: 0.8, active: 0.6, values: 0.9 },

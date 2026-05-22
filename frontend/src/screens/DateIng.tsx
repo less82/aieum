@@ -52,7 +52,7 @@ export function DateIng() {
     <AppShell title="데이트 진행">
       <div className="stagger space-y-5 p-5">
         <div className="flex items-center gap-3 rounded-2xl bg-gradient-to-br from-blush-200/80 to-lav-100 p-4 ring-1 ring-blush-100">
-          <Avatar emoji={partner.photo} size={52} />
+          <Avatar emoji={partner.photo} img={partner.img} size={52} />
           <div className="flex-1">
             <div className="font-semibold text-ink">{partner.nickname}님과의 데이트</div>
             <div className="text-sm text-blush-600">{course.emoji} {course.title}</div>

@@ -14,7 +14,8 @@ export interface SeedUser {
   age: number;
   region: string;
   bio: string;
-  photo: string; // 이모지 아바타 (데모용)
+  photo: string; // 이모지 아바타 (데모용, img 없을 때 폴백)
+  img?: string; // 프로필 사진 경로 (public)
   interests: string[];
   trait: TraitVector;
   distanceKm: number; // 나와의 거리

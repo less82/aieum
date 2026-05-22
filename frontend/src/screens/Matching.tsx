@@ -162,7 +162,7 @@ export function Matching() {
 
           <div className="card rounded-3xl p-5">
             <div className="flex items-center gap-4">
-              <Avatar emoji={match.photo} size={72} />
+              <Avatar emoji={match.photo} img={match.img} size={72} />
               <div className="flex-1">
                 <div className="display text-2xl font-bold text-ink">{match.nickname} <span className="font-sans text-sm font-normal text-ink-soft">{match.age}</span></div>
                 <div className="mt-1 flex items-center gap-2 text-sm text-ink-soft">
@@ -253,7 +253,7 @@ export function Matching() {
           <div className="flex items-center gap-3">
             <Avatar emoji="🙂" size={60} />
             <span className="text-2xl text-blush-500">♥</span>
-            <Avatar emoji={match.photo} size={60} />
+            <Avatar emoji={match.photo} img={match.img} size={60} />
           </div>
           <h2 className="display text-4xl font-bold text-ink">매칭 성공!</h2>
           <p className="text-ink-soft">
